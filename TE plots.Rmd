@@ -1,0 +1,26 @@
+---
+title: "Box1"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+```
+
+```{r}
+flybase <- read.csv("flybase.csv")
+plot(flybase[,3],flybase[,2], ylab = "Number of TE insertions", xlab="Year (YYYYMM)", main = "TE insertions in Flybase Annotations")
+
+```
+```{r}
+plants <- read.csv("TEsplantsnoBryo.csv")
+
+head(plants)
+
+p <- ggplot(plants, aes(x=Division, y=Percent, color = Class)) + 
+  geom_boxplot() + ylab("Mean percent of sequenced non-crop genomes") + xlab("Lineage")
+
+p
+```
+
